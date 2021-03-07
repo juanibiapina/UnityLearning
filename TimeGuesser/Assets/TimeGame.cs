@@ -36,14 +36,16 @@ public class TimeGame : MonoBehaviour
 
     void Reset() {
         roundStarted = false;
-        print("Get ready to start in " + roundDelayTime + " seconds");
+        waitTime = Random.Range(5, 15);
+        print("Press space in " + waitTime + " seconds");
+        print("Get ready to start in " + roundDelayTime + " seconds.");
         Invoke("StartDelayTime", roundDelayTime);
     }
 
     void StartDelayTime() {
         roundStarted = true;
         startTime = Time.time;
-        waitTime = 10;
-        print("Press space in " + waitTime + " seconds");
+        
+        print("Go");
     }
 }
