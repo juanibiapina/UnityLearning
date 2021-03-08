@@ -22,5 +22,11 @@ public class ShipController : MonoBehaviour
         {
             body.AddRelativeForce(Vector2.up * thrust);
         }
+
+        
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        Destroy(this.gameObject);
     }
 }
