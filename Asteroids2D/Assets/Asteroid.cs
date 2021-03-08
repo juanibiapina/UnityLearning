@@ -9,12 +9,13 @@ public class Asteroid : MonoBehaviour
     float speed;
 
     void Start()
-    { 
+    {
+        // calculate speed from size
         speed = 8 / transform.localScale.x;
 
-        // set random movement direction
-        Vector2 dir = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
-        dir.Normalize();
+        // calculate random velocity direction
+        float angle = Random.value * Mathf.PI * 2;
+        Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
         GetComponent<Rigidbody2D>().velocity = dir * speed;
     }
 
@@ -30,9 +31,10 @@ public class Asteroid : MonoBehaviour
             Destroy(c.gameObject);
             Destroy(gameObject);
 
-            if (part != null) {
-                Instantiate(part, transform.position, Random.rotationUniform);     
-                Instantiate(part, transform.position, Random.rotationUniform);
+            if (part != null)
+            {
+                Instantiate(part, transform.position, Quaternion.identity); // TODO: generate them side to side
+                Instantiate(part, transform.position, Quaternion.identity);
             }
         }
     }
