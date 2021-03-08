@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Asteroid : MonoBehaviour
+public class Wrapper : MonoBehaviour
 {
     Vector2 screenHalfSize;
     Vector2 halfSize;
