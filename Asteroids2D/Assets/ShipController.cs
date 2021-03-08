@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
-    public GameObject bulletPrefab;
     public float rotationSpeed;
     public float thrust;
+
     Rigidbody2D body;
     void Start()
     {
@@ -16,10 +16,7 @@ public class ShipController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ShootBullet();
-        }
+
     }
 
     void FixedUpdate()
@@ -40,10 +37,5 @@ public class ShipController : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-    }
-
-    private void ShootBullet()
-    {
-        Instantiate(bulletPrefab, transform.position, transform.rotation);
     }
 }

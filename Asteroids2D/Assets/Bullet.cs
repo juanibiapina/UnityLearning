@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public float thrust;
+    public float lifetime;
+
     void Start()
     {
-        Destroy(gameObject, 1.0f);
-        GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * 400);       
+        Destroy(gameObject, lifetime);
+        GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * thrust);       
     }
 
     // Update is called once per frame

@@ -21,9 +21,30 @@ public class AsteroidSpawner : MonoBehaviour
 
     private void SpawnAsteroid()
     {
-        Vector2 spawnPos = new Vector2(Random.Range(-screenHalfSize.x, screenHalfSize.x), Random.Range(-screenHalfSize.y, screenHalfSize.y));
+        Vector2 spawnPos = DetermineSpawnPos();
+        
+        
         GameObject e = Instantiate(asteroid, spawnPos, asteroid.transform.rotation);
         e.transform.parent = transform;
+    }
+
+    private Vector2 DetermineSpawnPos()
+    {
+        Vector2 spawnPos = new Vector2(Random.Range(2.5f, screenHalfSize.x - 2.5f), Random.Range(2.5f, screenHalfSize.y - 2.5f));
+        bool flipX = (Random.value > 0.5f);
+        bool flipY = (Random.value > 0.5f);
+
+        if (flipX)
+        {
+            spawnPos.x *= -1;
+        }
+
+        if (flipY)
+        {
+            spawnPos.y *= -1;
+        }
+
+        return spawnPos;
     }
 
     void CalculateScreenHalfSize()
