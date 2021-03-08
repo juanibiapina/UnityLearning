@@ -33,8 +33,9 @@ public class Asteroid : MonoBehaviour
 
             if (part != null)
             {
-                Instantiate(part, transform.position, Quaternion.identity); // TODO: generate them side to side
-                Instantiate(part, transform.position, Quaternion.identity);
+                float offset = part.transform.localScale.x / 2;
+                Instantiate(part, new Vector2(transform.position.x - offset, transform.position.y - offset), Quaternion.identity);
+                Instantiate(part, new Vector2(transform.position.x + offset, transform.position.y + offset), Quaternion.identity);
             }
         }
     }
