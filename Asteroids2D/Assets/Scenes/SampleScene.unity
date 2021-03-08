@@ -133,11 +133,12 @@ GameObject:
   - component: {fileID: 80107466}
   - component: {fileID: 80107465}
   - component: {fileID: 80107463}
+  - component: {fileID: 80107464}
   - component: {fileID: 80107468}
   - component: {fileID: 80107469}
   - component: {fileID: 80107470}
   m_Layer: 0
-  m_Name: Spaceship
+  m_Name: Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,6 +165,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &80107464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80107462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d58845c1f29c34cb62658ffe45e3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8626799602384323785, guid: ade01c374f4b2b94ebcd422921ea1af8,
+    type: 3}
+  bulletCooldown: 0.75
 --- !u!23 &80107465
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -237,10 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf3cdfd04de1694fb7baa1bbed387d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 8626799602384323785, guid: ade01c374f4b2b94ebcd422921ea1af8,
-    type: 3}
   rotationSpeed: 120
-  thrust: 10
+  thrust: 5
 --- !u!61 &80107469
 BoxCollider2D:
   m_ObjectHideFlags: 0
