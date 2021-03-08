@@ -31,8 +31,8 @@ public class Asteroid : MonoBehaviour
             Destroy(gameObject);
 
             if (part != null) {
-                Instantiate(part, transform.position, transform.rotation);     
-                Instantiate(part, transform.position, transform.rotation);
+                Instantiate(part, transform.position, Random.rotationUniform);     
+                Instantiate(part, transform.position, Random.rotationUniform);
             }
         }
     }
