@@ -21,20 +21,9 @@ public class AsteroidSpawner : MonoBehaviour
 
     private void SpawnAsteroid()
     {
-        // spawn
         Vector2 spawnPos = new Vector2(Random.Range(-screenHalfSize.x, screenHalfSize.x), Random.Range(-screenHalfSize.y, screenHalfSize.y));
         GameObject e = Instantiate(asteroid, spawnPos, asteroid.transform.rotation);
         e.transform.parent = transform;
-
-        // set random size
-        float spawnSize = Random.Range(1, 5);
-        e.transform.localScale = Vector2.one * spawnSize;
-
-        // set random movement direction
-        Vector2 dir = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f , 1.0f));
-        dir.Normalize();
-        e.GetComponent<Rigidbody2D>().velocity = dir * 2;
-
     }
 
     void CalculateScreenHalfSize()

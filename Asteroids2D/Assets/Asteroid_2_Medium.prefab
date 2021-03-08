@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4068241327840244658}
   - component: {fileID: -9151186309189896322}
   m_Layer: 0
-  m_Name: Asteroid
+  m_Name: Asteroid_2_Medium
   m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1542143948646986103}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.5, y: 2.54, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -144,3 +144,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d461b953f6124dc4aa03fa5dacc1b676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  part: {fileID: 1542143948646986103, guid: 6697298f9d24e0e458254a23918ff91d, type: 3}
