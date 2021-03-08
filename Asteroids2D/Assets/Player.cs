@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     public float rotationSpeed;
     public float thrust;
 
+    public event System.Action OnPlayerDeath;
+
     Rigidbody2D body;
     void Start()
     {
@@ -36,6 +38,9 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "Asteroid")
         {
             Destroy(this.gameObject);
+            if (OnPlayerDeath != null) {
+                OnPlayerDeath();
+            }
         }
     }
 }
