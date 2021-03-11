@@ -20,7 +20,8 @@ public class Chaser : MonoBehaviour
         float distance = displacement.magnitude;
 
         if (distance > attackRange) {
-Vector3 offset = dir * (speed * Time.deltaTime);
+            Vector3 offset = dir * (speed * Time.deltaTime);
+            Debug.DrawRay(transform.position, dir, Color.red);
 
         transform.Translate(offset);
         }
