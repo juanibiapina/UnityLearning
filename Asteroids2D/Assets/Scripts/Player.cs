@@ -7,13 +7,17 @@ public class Player : MonoBehaviour
 {
     public float rotationSpeed;
     public float thrust;
+    public ParticleSystem afterburnerLeft;
+    public ParticleSystem afterburnerRight;
 
     public event System.Action OnPlayerDeath;
 
     Rigidbody2D body;
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+
     }
 
     void Update()
@@ -30,6 +34,11 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow))
         {
             body.AddRelativeForce(Vector2.up * thrust);
+            afterburnerLeft.Play();
+            afterburnerRight.Play();
+        } else {
+            afterburnerLeft.Stop();
+            afterburnerRight.Stop();
         }
     }
 
@@ -38,7 +47,8 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "Asteroid")
         {
             Destroy(this.gameObject);
-            if (OnPlayerDeath != null) {
+            if (OnPlayerDeath != null)
+            {
                 OnPlayerDeath();
             }
         }
