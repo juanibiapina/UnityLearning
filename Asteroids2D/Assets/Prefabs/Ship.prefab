@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7366144975578502741}
   - component: {fileID: 5478460589757696493}
   m_Layer: 0
-  m_Name: Ship 1
+  m_Name: Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,6 +134,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 120
   thrust: 5
+  afterburnerLeft: {fileID: 0}
+  afterburnerRight: {fileID: 0}
+  explosion: {fileID: 6005718158882429154, guid: 128924279c714e14d8f6de6ad486546a,
+    type: 3}
 --- !u!114 &7366144975578502741
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -145,3 +145,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   part: {fileID: 0}
+  explosion: {fileID: 6005718158882429152, guid: 128924279c714e14d8f6de6ad486546a,
+    type: 3}

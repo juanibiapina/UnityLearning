@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float thrust;
     public ParticleSystem afterburnerLeft;
     public ParticleSystem afterburnerRight;
+    public GameObject explosion;
 
     public event System.Action OnPlayerDeath;
 
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "Asteroid")
         {
+            Instantiate(explosion, other.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
             if (OnPlayerDeath != null)
             {

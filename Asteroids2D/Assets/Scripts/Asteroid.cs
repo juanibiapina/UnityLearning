@@ -5,6 +5,7 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour
 {
     public GameObject part;
+    public ParticleSystem explosion;
 
     float speed;
 
@@ -28,6 +29,7 @@ public class Asteroid : MonoBehaviour
     {
         if (c.gameObject.tag == "Bullet")
         {
+            Instantiate(explosion, c.transform.position, Quaternion.identity);
             Destroy(c.gameObject);
             Destroy(gameObject);
 
