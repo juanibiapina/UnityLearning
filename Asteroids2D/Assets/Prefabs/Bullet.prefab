@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrust: 800
-  lifetime: 0.75
+  lifetime: 1.2
 --- !u!114 &468733621637313359
 MonoBehaviour:
   m_ObjectHideFlags: 0

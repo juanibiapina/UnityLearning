@@ -20,13 +20,13 @@ public class BulletShooter : MonoBehaviour
             ShootBullet();
         }
     }
-    
+
     private void ShootBullet()
     {
         if (Time.time - lastShotTime > bulletCooldown)
         {
             Instantiate(bulletPrefab, transform.position, transform.rotation);
-            lastShotTime= Time.time;
+            lastShotTime = Time.time;
         }
     }
 }
