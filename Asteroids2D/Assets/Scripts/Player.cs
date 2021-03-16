@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-
     }
 
     void Update()
@@ -32,12 +31,16 @@ public class Player : MonoBehaviour
 
         body.MoveRotation(body.rotation - (rotationSpeed * rotationDirection * Time.deltaTime));
 
-        if (Input.GetKey(KeyCode.UpArrow))
+        float input = Input.GetAxisRaw("Vertical");
+        input = Mathf.Clamp(input, 0, 1);
+        if (input > 0)
         {
             body.AddRelativeForce(Vector2.up * thrust);
             afterburnerLeft.Play();
             afterburnerRight.Play();
-        } else {
+        }
+        else
+        {
             afterburnerLeft.Stop();
             afterburnerRight.Stop();
         }

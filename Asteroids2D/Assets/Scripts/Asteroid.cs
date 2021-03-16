@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    public GameObject part;
+    public GameObject asteroid;
     public ParticleSystem explosion;
 
-    float speed;
+    AsteroidSpawner spawner;
 
-    void Start()
+    AsteroidSpec spec;
+
+    void Start() {
+        spawner = FindObjectOfType<AsteroidSpawner>();
+    }
+
+    public void Initialize(AsteroidSpec spec)
     {
-        // calculate speed from size
-        speed = 8 / transform.localScale.x;
+        this.spec = spec;
+
+        // calculate size
+        transform.localScale = transform.localScale * spec.size;
 
         // calculate random velocity direction
         float angle = Random.value * Mathf.PI * 2;
         Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-        GetComponent<Rigidbody2D>().velocity = dir * speed;
-    }
-
-    void Update()
-    {
-
+        GetComponent<Rigidbody2D>().velocity = dir * spec.speed;
     }
 
     void OnCollisionEnter2D(Collision2D c)
@@ -33,11 +36,13 @@ public class Asteroid : MonoBehaviour
             Destroy(c.gameObject);
             Destroy(gameObject);
 
-            if (part != null)
+            if (spec.numberOfChildren > 0)
             {
-                float offset = part.transform.localScale.x / 2;
-                Instantiate(part, new Vector2(transform.position.x - offset, transform.position.y - offset), Quaternion.identity);
-                Instantiate(part, new Vector2(transform.position.x + offset, transform.position.y + offset), Quaternion.identity);
+                for (int i = 0; i < spec.numberOfChildren; i++)
+                {
+                    Vector3 pos = Random.insideUnitCircle * (spec.size / 2);
+                    spawner.SpawnAsteroid(transform.position + pos, spec.childSpec);
+                }
             }
         }
     }

@@ -580,9 +580,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba0e19b2961cdea46b5fda7528e59894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroid: {fileID: 1542143948646986103, guid: 16ae47d80484a6d479b392651726748b,
+  asteroid: {fileID: 1556105498722808763, guid: 06db2edef2e12bb4ab9a9f73a697c207,
     type: 3}
-  numberOfAsteroids: 2
 --- !u!4 &1200094062
 Transform:
   m_ObjectHideFlags: 0
@@ -1012,7 +1011,7 @@ PrefabInstance:
     - target: {fileID: 7366144975578502749, guid: 6086e1354979dd14790c99d4804f2ecd,
         type: 3}
       propertyPath: m_Name
-      value: Ship
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6086e1354979dd14790c99d4804f2ecd, type: 3}
