@@ -5,21 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    bool nextLevel = false;
 
     // Update is called once per frame
     void Update()
     {
+        if (nextLevel) {
+            return;
+        }
+
         int n = GameObject.FindGameObjectsWithTag("Asteroid").Length;
         if (n == 0)
         {
+            nextLevel = true;
             Levels.NextLevel();
-            SceneManager.LoadScene(1);
+            Invoke("GoToLoadout", 2);
         }
-        
+
+    }
+
+    void GoToLoadout()
+    {
+        SceneManager.LoadScene(1);
     }
 }
