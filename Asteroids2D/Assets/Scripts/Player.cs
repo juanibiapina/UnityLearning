@@ -9,20 +9,18 @@ public class Player : MonoBehaviour
     public float thrust;
     public ParticleSystem afterburnerLeft;
     public ParticleSystem afterburnerRight;
+
     public GameObject explosion;
 
     public event System.Action OnPlayerDeath;
 
     Rigidbody2D body;
+    AudioSource booster;
 
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-    }
-
-    void Update()
-    {
-
+        booster = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -38,11 +36,19 @@ public class Player : MonoBehaviour
             body.AddRelativeForce(Vector2.up * thrust);
             afterburnerLeft.Play();
             afterburnerRight.Play();
+            if (!booster.isPlaying)
+            {
+                booster.Play();
+            }
         }
         else
         {
             afterburnerLeft.Stop();
             afterburnerRight.Stop();
+            if (booster.isPlaying)
+            {
+                booster.Stop();
+            }
         }
     }
 
