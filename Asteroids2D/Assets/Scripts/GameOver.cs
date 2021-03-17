@@ -29,5 +29,6 @@ public class GameOver : MonoBehaviour
     {
         gameOver = true;
         gameOverUi.SetActive(true);
+        Levels.Reset();
     }
 }

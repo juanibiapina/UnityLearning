@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
 {
-    public AsteroidSpec[] asteroids = new AsteroidSpec[] {
-        new AsteroidSpec(4, 2, 2, new AsteroidSpec(2, 4, 2, new AsteroidSpec(1, 8, 0, null))),
-        new AsteroidSpec(4, 2, 2, new AsteroidSpec(2, 4, 2, new AsteroidSpec(1, 8, 0, null))),
-    };
     public GameObject asteroid;
 
     Vector2 screenHalfSize;
@@ -16,7 +12,7 @@ public class AsteroidSpawner : MonoBehaviour
     {
         CalculateScreenHalfSize();
 
-        foreach (AsteroidSpec spec in asteroids)
+        foreach (AsteroidSpec spec in Levels.SpecsForCurrentLevel())
         {
             SpawnAsteroid(DetermineSpawnPos(), spec);
         }
