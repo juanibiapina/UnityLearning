@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletShooter : MonoBehaviour
+public class Cannon : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public float bulletCooldown;
+    public float bulletCooldown = 0.75f;
 
     float lastShotTime;
     void Start()
