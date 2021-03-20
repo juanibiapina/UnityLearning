@@ -20,7 +20,7 @@ public class GameOver : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(0);
             }
         }
     }
@@ -29,6 +29,5 @@ public class GameOver : MonoBehaviour
     {
         gameOver = true;
         gameOverUi.SetActive(true);
-        Levels.Reset();
     }
 }
