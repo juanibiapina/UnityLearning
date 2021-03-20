@@ -11,13 +11,18 @@ public class Asteroid : MonoBehaviour
 
     AsteroidSpec spec;
 
-    void Start() {
+    int currentHP = 10;
+
+    void Start()
+    {
         spawner = FindObjectOfType<AsteroidSpawner>();
     }
 
     public void Initialize(AsteroidSpec spec)
     {
         this.spec = spec;
+
+        this.currentHP = spec.hp;
 
         // calculate size
         transform.localScale = transform.localScale * spec.size;
@@ -28,21 +33,27 @@ public class Asteroid : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = dir * spec.speed;
     }
 
-    void OnCollisionEnter2D(Collision2D c)
-    {
-        if (c.gameObject.tag == "Projectile")
-        {
-            Instantiate(explosion, c.transform.position, Quaternion.identity);
-            Destroy(c.gameObject);
-            Destroy(gameObject);
+    public void Damage(int damage) {
+        currentHP -= damage;
 
-            if (spec.numberOfChildren > 0)
+        if (currentHP <= 0)
+        {
+            Explode();
+        }
+    }
+
+    void Explode()
+    {
+        Destroy(gameObject);
+        explosion = Instantiate(explosion, transform.position, Quaternion.identity);
+        explosion.transform.localScale = transform.localScale / 4;
+
+        if (spec.numberOfChildren > 0)
+        {
+            for (int i = 0; i < spec.numberOfChildren; i++)
             {
-                for (int i = 0; i < spec.numberOfChildren; i++)
-                {
-                    Vector3 pos = Random.insideUnitCircle * (spec.size / 2);
-                    spawner.SpawnAsteroid(transform.position + pos, spec.childSpec);
-                }
+                Vector3 pos = Random.insideUnitCircle * (spec.size / 2);
+                spawner.SpawnAsteroid(transform.position + pos, spec.childSpec);
             }
         }
     }

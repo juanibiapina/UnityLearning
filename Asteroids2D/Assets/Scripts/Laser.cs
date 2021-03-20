@@ -12,9 +12,15 @@ public class Laser : MonoBehaviour
         GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * thrust);
     }
 
-    // Update is called once per frame
-    void Update()
+   void OnTriggerEnter2D(Collider2D c)
     {
+        if (c.gameObject.tag == "Asteroid")
+        {
+            // self destruct
+            Destroy(gameObject);
 
+            Asteroid asteroid = c.gameObject.GetComponent<Asteroid>();
+            asteroid.Damage(1);
+        }
     }
 }
