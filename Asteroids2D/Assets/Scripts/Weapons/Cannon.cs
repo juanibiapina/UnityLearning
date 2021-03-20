@@ -5,13 +5,9 @@ using UnityEngine;
 public class Cannon : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public float bulletCooldown = 0.75f;
+    public float cooldown = 0.75f;
 
     float lastShotTime;
-    void Start()
-    {
-
-    }
 
     void Update()
     {
@@ -23,7 +19,7 @@ public class Cannon : MonoBehaviour
 
     private void ShootBullet()
     {
-        if (Time.time - lastShotTime > bulletCooldown)
+        if (Time.time - lastShotTime > cooldown)
         {
             Instantiate(bulletPrefab, transform.position, transform.rotation);
             lastShotTime = Time.time;
