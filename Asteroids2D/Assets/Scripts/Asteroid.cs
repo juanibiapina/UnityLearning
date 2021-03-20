@@ -30,7 +30,7 @@ public class Asteroid : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D c)
     {
-        if (c.gameObject.tag == "Bullet")
+        if (c.gameObject.tag == "Projectile")
         {
             Instantiate(explosion, c.transform.position, Quaternion.identity);
             Destroy(c.gameObject);
