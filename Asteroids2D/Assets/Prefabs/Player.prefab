@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf3cdfd04de1694fb7baa1bbed387d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultWeapon: {fileID: 5662316618852571593, guid: 1e214bf678771694d84ee1dcbbabda21,
+    type: 3}
   rotationSpeed: 180
   thrust: 10
   afterburnerLeft: {fileID: 5478460588704544197}

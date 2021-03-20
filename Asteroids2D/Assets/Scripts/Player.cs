@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameObject defaultWeapon;
     public float rotationSpeed;
     public float thrust;
     public ParticleSystem afterburnerLeft;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         booster = GetComponent<AudioSource>();
+        Instantiate(defaultWeapon, transform);
     }
 
     void FixedUpdate()
