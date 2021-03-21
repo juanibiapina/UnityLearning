@@ -147,4 +147,4 @@ MonoBehaviour:
   asteroid: {fileID: 1556105498722808763}
   explosion: {fileID: 6005718158882429152, guid: 128924279c714e14d8f6de6ad486546a,
     type: 3}
-  drop: {fileID: 8205671356162673805, guid: 90380f184cdbe6e4486c0d0e7fe4a40b, type: 3}
+  drop: {fileID: 2793818188761771098, guid: e790e820f4f2e664d91593b23e043a9b, type: 3}
