@@ -16,7 +16,9 @@ public class Player : MonoBehaviour {
 
     Rigidbody2D body;
     AudioSource booster;
+
     GameObject currentWeapon;
+    Weapon currentWeaponScript;
 
     public void SetWeapon(GameObject weaponPrefab) {
         if (currentWeapon != null) {
@@ -24,12 +26,19 @@ public class Player : MonoBehaviour {
         }
 
         currentWeapon = Instantiate(weaponPrefab, transform);
+        currentWeaponScript = currentWeapon.GetComponent<Weapon>();
     }
 
     void Start() {
         body = GetComponent<Rigidbody2D>();
         booster = GetComponent<AudioSource>();
         SetWeapon(defaultWeapon);
+    }
+
+    void Update() {
+        if (Input.GetKey(KeyCode.Space)) {
+            currentWeaponScript.Shoot();
+        }
     }
 
     void FixedUpdate() {

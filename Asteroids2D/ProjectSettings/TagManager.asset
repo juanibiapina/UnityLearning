@@ -16,10 +16,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Asteroid
+  - Projectile
+  - Item
   - 
   - 
   - 

@@ -2,21 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PusherShield : MonoBehaviour {
-    public GameObject prefab;
+public class Weapon : MonoBehaviour {
+    public GameObject projectile;
     public float cooldown = 3;
 
     float lastShotTime;
 
-    void Update() {
-        if (Input.GetKey(KeyCode.Space)) {
-            Shoot();
-        }
-    }
-
-    private void Shoot() {
+    public void Shoot() {
         if (Time.time - lastShotTime > cooldown) {
-            Instantiate(prefab, transform);
+            Instantiate(projectile, transform);
             lastShotTime = Time.time;
         }
     }

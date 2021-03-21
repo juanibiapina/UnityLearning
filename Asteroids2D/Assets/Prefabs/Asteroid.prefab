@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1556105498722808752}
   - component: {fileID: 4074602737768313214}
   - component: {fileID: -5074667327374910986}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Asteroid
   m_TagString: Asteroid
   m_Icon: {fileID: 0}
@@ -147,4 +147,4 @@ MonoBehaviour:
   asteroid: {fileID: 1556105498722808763}
   explosion: {fileID: 6005718158882429152, guid: 128924279c714e14d8f6de6ad486546a,
     type: 3}
-  drop: {fileID: 2793818188761771098, guid: e790e820f4f2e664d91593b23e043a9b, type: 3}
+  drop: {fileID: 8205671356162673805, guid: 90380f184cdbe6e4486c0d0e7fe4a40b, type: 3}
