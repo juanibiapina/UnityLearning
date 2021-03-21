@@ -5,9 +5,9 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour {
     public GameObject asteroid;
     public ParticleSystem explosion;
+    public GameObject drop;
 
     AsteroidSpawner spawner;
-
     AsteroidSpec spec;
 
     int currentHP = 10;
@@ -34,15 +34,24 @@ public class Asteroid : MonoBehaviour {
         currentHP -= damage;
 
         if (currentHP <= 0) {
-            Explode();
+            Destroy();
         }
     }
 
-    void Explode() {
+    void Destroy() {
+        // destroy self
         Destroy(gameObject);
+
+        // create explosion
         explosion = Instantiate(explosion, transform.position, Quaternion.identity);
         explosion.transform.localScale = transform.localScale / 4;
 
+        // create drop
+        if (Random.value < 0.05) {
+            Instantiate(drop, transform.position, Quaternion.identity);
+        }
+
+        // spawn children
         if (spec.numberOfChildren > 0) {
             for (int i = 0; i < spec.numberOfChildren; i++) {
                 Vector3 pos = Random.insideUnitCircle * (spec.size / 2);
