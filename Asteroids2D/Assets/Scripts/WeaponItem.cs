@@ -12,7 +12,7 @@ public class WeaponItem : MonoBehaviour {
 
             // set weapon from prefab
             Player player = c.gameObject.GetComponent<Player>();
-            player.SetWeapon(weaponPrefab);
+            player.AddWeapon(weaponPrefab);
         }
     }
 }
