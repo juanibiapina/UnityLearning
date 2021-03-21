@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AsteroidSpec
-{
+public class AsteroidSpec {
     public float size;
     public float speed;
     public int numberOfChildren;

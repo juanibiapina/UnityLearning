@@ -3,30 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOver : MonoBehaviour
-{
+public class GameOver : MonoBehaviour {
     public GameObject gameOverUi;
     bool gameOver;
 
-    void Start()
-    {
+    void Start() {
         FindObjectOfType<Player>().OnPlayerDeath += OnGameOver;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (gameOver)
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
+    void Update() {
+        if (gameOver) {
+            if (Input.GetKeyDown(KeyCode.R)) {
                 SceneManager.LoadScene(0);
             }
         }
     }
 
-    void OnGameOver()
-    {
+    void OnGameOver() {
         gameOver = true;
         gameOverUi.SetActive(true);
     }
