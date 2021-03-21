@@ -1,0 +1,2 @@
+- current task
+    - Make the laser gun item droppable from asteroids

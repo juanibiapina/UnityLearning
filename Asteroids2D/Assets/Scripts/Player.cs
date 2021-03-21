@@ -17,12 +17,21 @@ public class Player : MonoBehaviour
 
     Rigidbody2D body;
     AudioSource booster;
+    GameObject currentWeapon;
+
+    public void SetWeapon(GameObject weaponPrefab) {
+        if (currentWeapon != null) {
+            Destroy(currentWeapon);
+        }
+
+        currentWeapon = Instantiate(weaponPrefab, transform);
+    }
 
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         booster = GetComponent<AudioSource>();
-        Instantiate(defaultWeapon, transform);
+        SetWeapon(defaultWeapon);
     }
 
     void FixedUpdate()
