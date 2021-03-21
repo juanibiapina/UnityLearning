@@ -5,7 +5,7 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour {
     public GameObject asteroid;
     public ParticleSystem explosion;
-    public GameObject drop;
+    public GameObject[] drops;
 
     AsteroidSpawner spawner;
     AsteroidSpec spec;
@@ -47,8 +47,9 @@ public class Asteroid : MonoBehaviour {
         explosion.transform.localScale = transform.localScale / 4;
 
         // create drop
-        if (Random.value < 0.05) {
-            Instantiate(drop, transform.position, Quaternion.identity);
+        if (Random.value < 0.1) {
+            int n = Random.Range(0, drops.Length);
+            Instantiate(drops[n], transform.position, Quaternion.identity);
         }
 
         // spawn children
