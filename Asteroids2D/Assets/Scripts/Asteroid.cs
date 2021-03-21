@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Asteroid : MonoBehaviour
-{
+public class Asteroid : MonoBehaviour {
     public GameObject asteroid;
     public ParticleSystem explosion;
 
@@ -13,13 +12,11 @@ public class Asteroid : MonoBehaviour
 
     int currentHP = 10;
 
-    void Start()
-    {
+    void Start() {
         spawner = FindObjectOfType<AsteroidSpawner>();
     }
 
-    public void Initialize(AsteroidSpec spec)
-    {
+    public void Initialize(AsteroidSpec spec) {
         this.spec = spec;
 
         this.currentHP = spec.hp;
@@ -36,22 +33,18 @@ public class Asteroid : MonoBehaviour
     public void Damage(int damage) {
         currentHP -= damage;
 
-        if (currentHP <= 0)
-        {
+        if (currentHP <= 0) {
             Explode();
         }
     }
 
-    void Explode()
-    {
+    void Explode() {
         Destroy(gameObject);
         explosion = Instantiate(explosion, transform.position, Quaternion.identity);
         explosion.transform.localScale = transform.localScale / 4;
 
-        if (spec.numberOfChildren > 0)
-        {
-            for (int i = 0; i < spec.numberOfChildren; i++)
-            {
+        if (spec.numberOfChildren > 0) {
+            for (int i = 0; i < spec.numberOfChildren; i++) {
                 Vector3 pos = Random.insideUnitCircle * (spec.size / 2);
                 spawner.SpawnAsteroid(transform.position + pos, spec.childSpec);
             }
