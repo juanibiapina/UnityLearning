@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Asteroid : MonoBehaviour {
-    public static float dropChance = 0.05f;
-
     public GameObject asteroid;
     public ParticleSystem explosion;
-    public GameObject[] drops;
 
     AsteroidSpawner spawner;
     AsteroidSpec spec;
@@ -53,14 +50,6 @@ public class Asteroid : MonoBehaviour {
         // create explosion
         explosion = Instantiate(explosion, transform.position, Quaternion.identity);
         explosion.transform.localScale = transform.localScale / 4;
-
-        // create drop or increase chance for next time
-        if (Random.value < dropChance) {
-            int n = Random.Range(0, drops.Length);
-            Instantiate(drops[n], transform.position, Quaternion.identity);
-        } else {
-            dropChance += 0.05f;
-        }
 
         // spawn children
         if (spec.numberOfChildren > 0) {

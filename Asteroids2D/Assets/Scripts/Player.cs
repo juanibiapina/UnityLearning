@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    public GameObject defaultWeapon;
+    public Weapon primaryWeapon;
+    public Weapon secondaryWeapon;
     public float rotationSpeed;
     public float thrust;
     public ParticleSystem afterburnerLeft;
@@ -17,43 +18,18 @@ public class Player : MonoBehaviour {
     Rigidbody2D body;
     AudioSource booster;
 
-    List<Weapon> weapons = new List<Weapon>();
-    int currentWeapon;
-
-    public void AddWeapon(GameObject weaponPrefab) {
-        GameObject weapon = Instantiate(weaponPrefab, transform);
-        Weapon weaponScript = weapon.GetComponent<Weapon>();
-
-        weapons.Add(weaponScript);
-    }
-
     void Start() {
         body = GetComponent<Rigidbody2D>();
         booster = GetComponent<AudioSource>();
-        AddWeapon(defaultWeapon);
     }
 
     void Update() {
         if (Input.GetKey(KeyCode.Space)) {
-            weapons[currentWeapon].Shoot();
+            primaryWeapon.Shoot();
         }
 
-        if (Input.GetKey(KeyCode.Alpha1)) {
-            if (weapons.Count >= 1) {
-                currentWeapon = 0;
-            }
-        }
-
-        if (Input.GetKey(KeyCode.Alpha2)) {
-            if (weapons.Count >= 2) {
-                currentWeapon = 1;
-            }
-        }
-
-        if (Input.GetKey(KeyCode.Alpha3)) {
-            if (weapons.Count >= 3) {
-                currentWeapon = 2;
-            }
+        if (Input.GetKey(KeyCode.DownArrow)) {
+            secondaryWeapon.Shoot();
         }
     }
 

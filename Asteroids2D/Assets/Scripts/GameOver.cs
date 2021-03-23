@@ -16,7 +16,6 @@ public class GameOver : MonoBehaviour {
         if (gameOver) {
             if (Input.GetKeyDown(KeyCode.R)) {
                 SceneManager.LoadScene(0);
-                Asteroid.dropChance = 0.05f;
             }
         }
     }
