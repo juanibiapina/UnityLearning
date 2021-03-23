@@ -9,12 +9,14 @@ public class Asteroid : MonoBehaviour {
     AsteroidSpawner spawner;
     AsteroidSpec spec;
     Rigidbody2D body;
+    EndlessMode gameManager;
 
     int currentHP = 10;
 
     void Start() {
         spawner = FindObjectOfType<AsteroidSpawner>();
         body = GetComponent<Rigidbody2D>();
+        gameManager = FindObjectOfType<EndlessMode>();
     }
 
     void FixedUpdate() {
@@ -58,5 +60,7 @@ public class Asteroid : MonoBehaviour {
                 spawner.SpawnAsteroid(transform.position + pos, spec.childSpec);
             }
         }
+
+        gameManager.AddPoints((int)(body.velocity.magnitude * 8 / transform.localScale.x));
     }
 }
