@@ -10,6 +10,7 @@ public class Asteroid : MonoBehaviour {
     AsteroidSpec spec;
     Rigidbody2D body;
     EndlessMode gameManager;
+    Player player;
 
     int currentHP = 10;
 
@@ -17,6 +18,7 @@ public class Asteroid : MonoBehaviour {
         spawner = FindObjectOfType<AsteroidSpawner>();
         body = GetComponent<Rigidbody2D>();
         gameManager = FindObjectOfType<EndlessMode>();
+        player = FindObjectOfType<Player>();
     }
 
     void FixedUpdate() {
@@ -61,6 +63,8 @@ public class Asteroid : MonoBehaviour {
             }
         }
 
-        gameManager.AddPoints((int)(body.velocity.magnitude * 8 / transform.localScale.x));
+        // calculate points
+        float playerFactor = Mathf.Max(1, player.GetComponent<Rigidbody2D>().velocity.magnitude);
+        gameManager.AddPoints((int)(body.velocity.magnitude * (8 / transform.localScale.x) * playerFactor));
     }
 }

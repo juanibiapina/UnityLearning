@@ -33,7 +33,7 @@ public class EndlessMode : MonoBehaviour {
     void Update() {
         if (gameOver) {
             if (Input.GetKeyDown(KeyCode.R)) {
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(1);
             }
         }
     }
