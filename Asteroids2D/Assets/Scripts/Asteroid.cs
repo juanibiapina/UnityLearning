@@ -6,11 +6,12 @@ public class Asteroid : MonoBehaviour {
     public GameObject asteroid;
     public ParticleSystem explosion;
 
+    public static event System.Action<GameObject> Destroyed;
+
     AsteroidSpawner spawner;
     AsteroidSpec spec;
     Rigidbody2D body;
     EndlessMode gameManager;
-    Player player;
 
     int currentHP = 10;
 
@@ -18,7 +19,6 @@ public class Asteroid : MonoBehaviour {
         spawner = FindObjectOfType<AsteroidSpawner>();
         body = GetComponent<Rigidbody2D>();
         gameManager = FindObjectOfType<EndlessMode>();
-        player = FindObjectOfType<Player>();
     }
 
     void FixedUpdate() {
@@ -48,9 +48,6 @@ public class Asteroid : MonoBehaviour {
     }
 
     void Destroy() {
-        // destroy self
-        Destroy(gameObject);
-
         // create explosion
         explosion = Instantiate(explosion, transform.position, Quaternion.identity);
         explosion.transform.localScale = transform.localScale / 4;
@@ -63,8 +60,10 @@ public class Asteroid : MonoBehaviour {
             }
         }
 
-        // calculate points
-        float playerFactor = Mathf.Max(1, player.GetComponent<Rigidbody2D>().velocity.magnitude);
-        gameManager.AddPoints((int)(body.velocity.magnitude * (8 / transform.localScale.x) * playerFactor));
+        // emit event
+        Destroyed?.Invoke(gameObject);
+
+        // destroy self
+        Destroy(gameObject);
     }
 }

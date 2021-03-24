@@ -12,15 +12,18 @@ public class EndlessMode : MonoBehaviour {
     public Text scoreValueTextInGame;
 
     AsteroidSpawner spawner;
+    Player player;
     private int score;
     bool gameOver;
 
     void Awake() {
         spawner = FindObjectOfType<AsteroidSpawner>();
+        player = FindObjectOfType<Player>();
     }
 
     void Start() {
         FindObjectOfType<Player>().OnPlayerDeath += OnGameOver;
+        Asteroid.Destroyed += AsteroidDestroyed;
 
         for (int i = 0; i < 4; i++) {
             spawner.SpawnAsteroidInPlayArea(new AsteroidSpec(4, 2, 2, new AsteroidSpec(2, 4, 2, new AsteroidSpec(1, 8, 0, null))));
@@ -29,13 +32,17 @@ public class EndlessMode : MonoBehaviour {
         StartCoroutine(SpawnAsteroidOnEdge());
     }
 
-    // Update is called once per frame
     void Update() {
         if (gameOver) {
             if (Input.GetKeyDown(KeyCode.R)) {
                 SceneManager.LoadScene(1);
             }
         }
+    }
+
+    void AsteroidDestroyed(GameObject asteroid) {
+        float playerFactor = Mathf.Max(1, player.GetComponent<Rigidbody2D>().velocity.magnitude);
+        AddPoints((int)(asteroid.GetComponent<Rigidbody2D>().velocity.magnitude * (8 / transform.localScale.x) * playerFactor));
     }
 
     void OnGameOver() {
@@ -47,11 +54,8 @@ public class EndlessMode : MonoBehaviour {
         // set score
         scoreValueText.text = score.ToString();
 
-        // set high score
+        // save and show high score
         highScoreValueText.text = CalculateHighScore().ToString();
-
-        // reset score
-        score = 0;
     }
 
     IEnumerator SpawnAsteroidOnEdge() {
@@ -61,7 +65,7 @@ public class EndlessMode : MonoBehaviour {
         }
     }
 
-    public void AddPoints(int value) {
+    void AddPoints(int value) {
         score += value;
         scoreValueTextInGame.text = score.ToString();
     }
