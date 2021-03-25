@@ -6,19 +6,17 @@ public class Asteroid : MonoBehaviour {
     public GameObject asteroid;
     public ParticleSystem explosion;
 
-    public static event System.Action<GameObject> Destroyed;
-
     AsteroidSpawner spawner;
     AsteroidSpec spec;
     Rigidbody2D body;
-    EndlessMode gameManager;
+    EventSystem eventSystem;
 
     int currentHP = 10;
 
-    void Start() {
+    void Awake() {
         spawner = FindObjectOfType<AsteroidSpawner>();
         body = GetComponent<Rigidbody2D>();
-        gameManager = FindObjectOfType<EndlessMode>();
+        eventSystem = FindObjectOfType<EventSystem>();
     }
 
     void FixedUpdate() {
@@ -61,7 +59,7 @@ public class Asteroid : MonoBehaviour {
         }
 
         // emit event
-        Destroyed?.Invoke(gameObject);
+        eventSystem.AsteroidDestroyed?.Invoke(gameObject);
 
         // destroy self
         Destroy(gameObject);

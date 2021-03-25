@@ -13,20 +13,22 @@ public class EndlessMode : MonoBehaviour {
 
     AsteroidSpawner spawner;
     Player player;
+    EventSystem eventSystem;
     private int score;
     bool gameOver;
 
     void Awake() {
         spawner = FindObjectOfType<AsteroidSpawner>();
         player = FindObjectOfType<Player>();
+        eventSystem = FindObjectOfType<EventSystem>();
     }
 
     void OnEnable() {
-        Asteroid.Destroyed += AsteroidDestroyed;
+        eventSystem.AsteroidDestroyed += AsteroidDestroyed;
     }
 
     void OnDisable() {
-        Asteroid.Destroyed -= AsteroidDestroyed;
+        eventSystem.AsteroidDestroyed -= AsteroidDestroyed;
     }
 
     void Start() {
