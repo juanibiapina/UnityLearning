@@ -5,5 +5,5 @@ using UnityEngine;
 
 public class EventSystem : MonoBehaviour {
     public Action<GameObject> AsteroidDestroyed;
-    public System.Action PlayerDied;
+    public Action PlayerDied;
 }
