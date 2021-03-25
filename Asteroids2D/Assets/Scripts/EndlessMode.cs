@@ -86,6 +86,6 @@ public class EndlessMode : MonoBehaviour {
             PlayerPrefs.SetInt("HighScore", score);
         }
 
-        return highScore;
+        return PlayerPrefs.GetInt("HighScore", 0);
     }
 }
