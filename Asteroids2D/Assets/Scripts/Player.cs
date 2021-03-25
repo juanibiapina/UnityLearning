@@ -13,14 +13,14 @@ public class Player : MonoBehaviour {
 
     public GameObject explosion;
 
-    public event System.Action OnPlayerDeath;
-
+    EventSystem eventSystem;
     Rigidbody2D body;
     AudioSource booster;
 
-    void Start() {
+    void Awake() {
         body = GetComponent<Rigidbody2D>();
         booster = GetComponent<AudioSource>();
+        eventSystem = FindObjectOfType<EventSystem>();
     }
 
     void Update() {
@@ -59,10 +59,10 @@ public class Player : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Asteroid") {
             Instantiate(explosion, other.transform.position, Quaternion.identity);
+
+            eventSystem.PlayerDied?.Invoke();
+
             Destroy(this.gameObject);
-            if (OnPlayerDeath != null) {
-                OnPlayerDeath();
-            }
         }
     }
 }

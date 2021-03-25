@@ -25,16 +25,15 @@ public class EndlessMode : MonoBehaviour {
 
     void OnEnable() {
         eventSystem.AsteroidDestroyed += AsteroidDestroyed;
+        eventSystem.PlayerDied += GameOver;
     }
 
     void OnDisable() {
         eventSystem.AsteroidDestroyed -= AsteroidDestroyed;
+        eventSystem.PlayerDied -= GameOver;
     }
 
     void Start() {
-        FindObjectOfType<Player>().OnPlayerDeath += OnGameOver;
-
-
         for (int i = 0; i < 4; i++) {
             spawner.SpawnAsteroidInPlayArea(new AsteroidSpec(4, 2, 2, new AsteroidSpec(2, 4, 2, new AsteroidSpec(1, 8, 0, null))));
         }
@@ -55,7 +54,7 @@ public class EndlessMode : MonoBehaviour {
         AddPoints((int)(asteroid.GetComponent<Rigidbody2D>().velocity.magnitude * (8 / transform.localScale.x) * playerFactor));
     }
 
-    void OnGameOver() {
+    void GameOver() {
         gameOver = true;
 
         // display game over UI
